@@ -22,21 +22,31 @@ class MainActivity : BaseActivity<BaseViewModel>() {
         viewModel.CenterLiveData.observe(this){ State ->
             when(State){
                 is DataState.UnInitialized -> initViews()
-                is DataState.Loading -> handleLoading()
+                is DataState.Loading -> handleLoading(State)
                 is DataState.success -> handleSuccess(State)
+                is DataState.Error -> handleError()
             }
         }
     }
 
-    private fun handleSuccess(state: DataState.success) {
+    private fun handleLoading(state: DataState.Loading) {
+        //100개의 데이터를 저장
         state.Data.forEach { Center ->
-            Log.e("Main","${Center}")
+            Log.e("save","${Center}")
+            viewModel.saveCenterToLocalDB(Center)
         }
     }
 
-    private fun handleLoading() {
-
+    private fun handleError() {
     }
+
+    private fun handleSuccess(state: DataState.success) {
+        state.Data.forEach { Center ->
+            Log.e("In Database","${Center}")
+        }
+    }
+
+
 
     private fun initViews() {
         Log.e("Main","Init!!")

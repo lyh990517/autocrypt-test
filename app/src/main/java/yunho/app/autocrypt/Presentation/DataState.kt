@@ -5,7 +5,9 @@ import yunho.app.autocrypt.Data.Entity.CenterEntity
 sealed class DataState{
     object UnInitialized : DataState()
 
-    object Loading : DataState()
+    data class Loading (
+        val Data : List<CenterEntity>
+    ) : DataState()
 
     data class success(
         val Data : List<CenterEntity>

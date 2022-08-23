@@ -1,8 +1,11 @@
 package yunho.app.autocrypt.DI
 
 import kotlinx.coroutines.Dispatchers
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import yunho.app.autocrypt.Data.LocalDB.provideCenterDB
+import yunho.app.autocrypt.Data.LocalDB.provideCenterDao
 import yunho.app.autocrypt.Data.RemoteDB.buildOkHttpClient
 import yunho.app.autocrypt.Data.RemoteDB.provideCenterAPIService
 import yunho.app.autocrypt.Data.RemoteDB.provideCenterRetrofit
@@ -21,10 +24,13 @@ internal val AppModule = module {
     single { provideCenterAPIService(get()) }
 
     //repository
-    single { CenterRepository(get(),get()) }
+    single { CenterRepository(get(),get(),get()) }
 
     //viewModel
     viewModel { MainViewModel(get()) }
 
+    //database
+    single { provideCenterDB(androidContext()) }
+    single { provideCenterDao(get()) }
 
 }

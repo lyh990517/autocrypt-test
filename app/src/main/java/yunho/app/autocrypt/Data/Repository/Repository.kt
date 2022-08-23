@@ -8,4 +8,8 @@ interface Repository {
         perPage: Int,
         serviceKey : String
     ) : List<CenterEntity>
+
+    suspend fun saveCenterData(centerEntity: CenterEntity)
+
+    suspend fun getCenterListFromLocalDB() : List<CenterEntity>
 }
