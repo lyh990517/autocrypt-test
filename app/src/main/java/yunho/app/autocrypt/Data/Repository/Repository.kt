@@ -6,10 +6,12 @@ interface Repository {
     suspend fun getCenterList(
         page: Int,
         perPage: Int,
-        serviceKey : String
-    ) : List<CenterEntity>
+        serviceKey: String
+    ): List<CenterEntity>
 
     suspend fun saveCenterData(centerEntity: CenterEntity)
 
-    suspend fun getCenterListFromLocalDB() : List<CenterEntity>
+    suspend fun getCenterListFromLocalDB(): List<CenterEntity>
+
+    suspend fun getSpecificCenterInfo(id: Long): CenterEntity
 }

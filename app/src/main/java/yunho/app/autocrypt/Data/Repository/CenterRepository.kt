@@ -32,4 +32,8 @@ class CenterRepository(
         centerDao.getAll()
     }
 
+    override suspend fun getSpecificCenterInfo(id: Long): CenterEntity = withContext(IODispatcher) {
+        centerDao.getOne(id)
+    }
+
 }

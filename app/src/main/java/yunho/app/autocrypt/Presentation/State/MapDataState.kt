@@ -11,5 +11,9 @@ sealed class MapDataState{
         val LocalData : List<CenterEntity>
     ) : MapDataState()
 
+    data class successOne(
+        val CenterInfo : CenterEntity
+    ) : MapDataState()
+
     object Error : MapDataState()
 }

@@ -9,10 +9,12 @@ import yunho.app.autocrypt.Data.Entity.CenterEntity
 @Dao
 interface CenterDao {
     @Query("SELECT * FROM CenterEntity")
-    suspend fun getAll() : List<CenterEntity>
+    suspend fun getAll(): List<CenterEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOne(centerEntity: CenterEntity)
 
+    @Query("SELECT * FROM CenterEntity WHERE id = :id")
+    suspend fun getOne(id: Long): CenterEntity
 
 }
