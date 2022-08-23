@@ -10,8 +10,8 @@ import yunho.app.autocrypt.Data.RemoteDB.buildOkHttpClient
 import yunho.app.autocrypt.Data.RemoteDB.provideCenterAPIService
 import yunho.app.autocrypt.Data.RemoteDB.provideCenterRetrofit
 import yunho.app.autocrypt.Data.Repository.CenterRepository
-import yunho.app.autocrypt.Data.Repository.Repository
 import yunho.app.autocrypt.Presentation.ViewModel.MainViewModel
+import yunho.app.autocrypt.Presentation.ViewModel.MapViewModel
 
 internal val AppModule = module {
     //dispatcher
@@ -28,6 +28,7 @@ internal val AppModule = module {
 
     //viewModel
     viewModel { MainViewModel(get()) }
+    viewModel { MapViewModel(get()) }
 
     //database
     single { provideCenterDB(androidContext()) }
