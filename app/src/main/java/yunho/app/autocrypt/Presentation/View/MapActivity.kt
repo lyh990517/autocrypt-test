@@ -133,7 +133,7 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
         }
         return true
     }
-
+    //test
     private fun updateMarker(Centers: List<CenterEntity>) {
         Centers.forEach { Center ->
             val marker = Marker()
