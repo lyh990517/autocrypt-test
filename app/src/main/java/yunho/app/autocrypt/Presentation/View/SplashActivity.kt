@@ -37,6 +37,7 @@ class SplashActivity : BaseActivity<BaseViewModel>() {
     private fun handleLoading(state: CenterDataState.Loading) = with(binding) {
         progressBar.isVisible = true
         loadingText.text = "On Loading!!"
+        splashView.transitionToEnd()
         state.RemoteData.forEachIndexed { LoadingCount, Center ->
             Log.e("save", "${LoadingCount + 1}% ${Center}")
             viewModel.saveCenterToLocalDB(Center)

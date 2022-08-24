@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">autocrypt</string>
     <string name="naver_map_client_id">n4kxzqha1p</string>
+    <string name="autocrypt">AUTOCRYPT</string>
 </resources>

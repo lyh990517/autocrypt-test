@@ -89,7 +89,6 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
         binding.currentLocationButton.map = naverMap
         naverMap.locationSource = locationSource
         updateMarker(Centers)
-        Log.e("type","${Types.TypeSet}")
     }
 
     override fun onRequestPermissionsResult(

@@ -17,55 +17,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <View
         android:id="@+id/CenterInfoView"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:background="@color/white"
+        android:background="@color/mainColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </View>
+
     <TextView
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe24ssurround"
         android:text="address"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CenterInfoView" />
 
     <TextView
         android:id="@+id/centerName"
-        android:text="centerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe24ssurround"
+        android:text="centerName"
+        android:textColor="@color/white"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CenterInfoView" />
 
     <TextView
         android:id="@+id/facilityName"
-        android:text="fac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe24ssurround"
+        android:text="fac"
+        android:textColor="@color/white"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CenterInfoView" />
 
     <TextView
         android:id="@+id/phoneNumber"
-        android:text="phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe24ssurround"
+        android:text="phone"
+        android:textColor="@color/white"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CenterInfoView" />
 
     <TextView
         android:id="@+id/updatedAt"
-        android:text="update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe24ssurround"
+        android:text="update"
+        android:textColor="@color/white"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CenterInfoView" />
+
     <com.naver.maps.map.widget.LocationButtonView
         android:id="@+id/currentLocationButton"
         android:layout_width="wrap_content"
