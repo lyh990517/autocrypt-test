@@ -3,12 +3,14 @@ package yunho.app.autocrypt.Presentation.View
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.util.MarkerIcons
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import yunho.app.autocrypt.Data.Entity.CenterEntity
 import yunho.app.autocrypt.Presentation.BaseActivity
@@ -18,9 +20,10 @@ import yunho.app.autocrypt.Presentation.ViewModel.MapViewModel
 import yunho.app.autocrypt.databinding.ActivityMapBinding
 import java.util.*
 
+@AndroidEntryPoint
 class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var binding: ActivityMapBinding
-    override val viewModel: MapViewModel by viewModel()
+    override val viewModel: MapViewModel by viewModels()
     private lateinit var naverMap: NaverMap
     private lateinit var Centers: List<CenterEntity>
     private lateinit var locationSource: FusedLocationSource
@@ -75,10 +78,11 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
 
     }
 
-    private fun goLatLng(lat: Double, lng: Double){
+    private fun goLatLng(lat: Double, lng: Double) {
         val cameraUpdate = CameraUpdate.scrollTo(LatLng(lat, lng)).animate(CameraAnimation.Easing)
         naverMap.moveCamera(cameraUpdate)
     }
+
     override fun onMapReady(map: NaverMap) {
         naverMap = map
         naverMap.maxZoom = 20.0
@@ -113,7 +117,7 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
         val selectedCenter = Centers.first {
             it.id == marker.tag
         }
-        goLatLng(selectedCenter.lat.toDouble(),selectedCenter.lng.toDouble())
+        goLatLng(selectedCenter.lat.toDouble(), selectedCenter.lng.toDouble())
         if (IDqueue.isEmpty()) {
             IDqueue.add(selectedCenter.id)
         }
@@ -133,16 +137,17 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
         }
         return true
     }
+
     //test
     private fun updateMarker(Centers: List<CenterEntity>) {
         Centers.forEach { Center ->
             val marker = Marker()
             marker.position = LatLng(Center.lat.toDouble(), Center.lng.toDouble())
             marker.onClickListener = this
-            if(Center.centerType == "지역"){
+            if (Center.centerType == "지역") {
                 marker.icon = MarkerIcons.GREEN
                 marker.iconTintColor = Color.BLUE
-            }else{
+            } else {
                 //중앙권역
                 marker.icon = MarkerIcons.RED
                 marker.iconTintColor = Color.BLACK

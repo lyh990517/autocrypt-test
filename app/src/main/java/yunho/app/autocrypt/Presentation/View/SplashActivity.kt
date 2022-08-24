@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import yunho.app.autocrypt.Presentation.BaseActivity
 import yunho.app.autocrypt.Presentation.BaseViewModel
@@ -12,6 +14,7 @@ import yunho.app.autocrypt.Presentation.State.CenterDataState
 import yunho.app.autocrypt.Presentation.ViewModel.MainViewModel
 import yunho.app.autocrypt.databinding.ActivityMainBinding
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<BaseViewModel>() {
 
     private lateinit var binding: ActivityMainBinding
@@ -21,7 +24,7 @@ class SplashActivity : BaseActivity<BaseViewModel>() {
         setContentView(binding.root)
     }
 
-    override val viewModel: MainViewModel by viewModel()
+    override val viewModel: MainViewModel by viewModels()
 
     override fun observeData() {
         viewModel.CenterLiveData.observe(this) { State ->
