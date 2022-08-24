@@ -19,15 +19,14 @@ Architecture: MVVM
 <br>
 UI Layout: XML
 <br>
-jetpack: ViewBinding,AAC,ViewModel,Livedata,etc... 
-<br>
-DI : Koin, Hilt
-<br>
 Network: Retrofit, OkHttp, Gson
 <br>
+jetpack: ViewBinding,AAC,ViewModel,Livedata,etc... 
+<br>
 Map API: NaverMap API
+<br>
+DI : Koin, Hilt
 <br>
 비동기: Coroutine Flow
 <br>
 LocalDB: Room
-<br>
