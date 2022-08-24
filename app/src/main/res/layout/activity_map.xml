@@ -24,9 +24,8 @@
         android:background="@color/mainColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"></View>
 
-    </View>
 
     <TextView
         android:id="@+id/address"
@@ -152,5 +151,4 @@
         android:layout_margin="24dp"
         app:layout_constraintBottom_toTopOf="@+id/CenterInfoView"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.motion.widget.MotionLayout>
