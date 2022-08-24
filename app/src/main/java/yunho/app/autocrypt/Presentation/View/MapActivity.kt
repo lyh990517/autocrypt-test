@@ -7,10 +7,7 @@ import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraUpdate
-import com.naver.maps.map.LocationTrackingMode
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.util.FusedLocationSource
@@ -46,14 +43,13 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
     }
 
     private fun handleSuccessOne(state: MapDataState.successOne) {
-        with(state.CenterInfo){
+        with(state.CenterInfo) {
             binding.address.text = address
             binding.centerName.text = centerName
             binding.facilityName.text = facilityName
             binding.phoneNumber.text = phoneNumber
             binding.updatedAt.text = updatedAt
         }
-        Log.e("Info", "${state.CenterInfo}")
     }
 
 
@@ -83,14 +79,15 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
 
     }
 
+    private fun goLatLng(lat: Double, lng: Double){
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(lat, lng)).animate(CameraAnimation.Easing)
+        naverMap.moveCamera(cameraUpdate)
+    }
     override fun onMapReady(map: NaverMap) {
         naverMap = map
         naverMap.maxZoom = 20.0
         naverMap.minZoom = 10.0
-
-        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.497885, 127.027512))
-        naverMap.moveCamera(cameraUpdate)
-
+        goLatLng(37.497885, 127.027512)
         val uiSetting = naverMap.uiSettings
         uiSetting.isLocationButtonEnabled = false
         binding.currentLocationButton.map = naverMap
@@ -121,7 +118,8 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
         val selectedCenter = Centers.first {
             it.id == marker.tag
         }
-        if (IDqueue.isEmpty()){
+        goLatLng(selectedCenter.lat.toDouble(),selectedCenter.lng.toDouble())
+        if (IDqueue.isEmpty()) {
             IDqueue.add(selectedCenter.id)
         }
         viewModel.MapLiveData.postValue(MapDataState.successOne(selectedCenter))
@@ -129,11 +127,11 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
             binding.MapLayout.transitionToEnd()
             isClicked = true
         } else {
-            if(IDqueue.peek() == selectedCenter.id){
+            if (IDqueue.peek() == selectedCenter.id) {
                 IDqueue.poll()
                 binding.MapLayout.transitionToStart()
                 isClicked = false
-            }else{
+            } else {
                 IDqueue.poll()
                 IDqueue.add(selectedCenter.id)
             }
@@ -156,4 +154,5 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
+
 }
