@@ -9,14 +9,11 @@
     app:layoutDescription="@xml/activity_main_scene"
     tools:context=".Presentation.View.SplashActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/cafe24ssurround"
-        android:text="@string/autocrypt"
-        android:textColor="@color/white"
-        android:textSize="35dp"
+        android:src="@drawable/autocrypt_logo"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/loadingText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:fontFamily="@font/cafe24ssurround"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
@@ -43,7 +40,7 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/cafe24ssurround"
         android:text="Created By YunhoLee"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

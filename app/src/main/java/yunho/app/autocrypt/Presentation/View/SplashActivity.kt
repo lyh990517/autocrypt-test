@@ -55,6 +55,8 @@ class SplashActivity : BaseActivity<BaseViewModel>() {
             progressBar.isVisible = false
             loadingText.text = "Loading Complete!!"
             val intent = Intent(this@SplashActivity, MapActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent)
         }, 2000)
 
