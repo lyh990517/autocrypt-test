@@ -23,6 +23,7 @@ import yunho.app.autocrypt.Presentation.BaseViewModel
 import yunho.app.autocrypt.Presentation.State.MapDataState
 import yunho.app.autocrypt.Presentation.ViewModel.MapViewModel
 import yunho.app.autocrypt.databinding.ActivityMapBinding
+import java.util.*
 
 class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var binding: ActivityMapBinding
@@ -31,6 +32,7 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
     private lateinit var Centers: List<CenterEntity>
     private lateinit var locationSource: FusedLocationSource
     private var isClicked = false
+    private val IDqueue: Queue<Int> = LinkedList()
     override fun observeData() {
         viewModel.MapLiveData.observe(this) { State ->
             when (State) {
@@ -44,8 +46,6 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
     }
 
     private fun handleSuccessOne(state: MapDataState.successOne) {
-        //TODO 가져온 데이터로 정보안내창 초기화
-        state.CenterInfo
         with(state.CenterInfo){
             binding.address.text = address
             binding.centerName.text = centerName
@@ -118,16 +118,25 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
     }
 
     override fun onClick(marker: Overlay): Boolean {
-        Log.e("Touch", "${isClicked}")
-        isClicked = !isClicked
-        val selectedCenter = Centers.firstOrNull {
+        val selectedCenter = Centers.first {
             it.id == marker.tag
         }
-        viewModel.MapLiveData.postValue(MapDataState.successOne(selectedCenter!!))
+        if (IDqueue.isEmpty()){
+            IDqueue.add(selectedCenter.id)
+        }
+        viewModel.MapLiveData.postValue(MapDataState.successOne(selectedCenter))
         if (!isClicked) {
             binding.MapLayout.transitionToEnd()
+            isClicked = true
         } else {
-            binding.MapLayout.transitionToStart()
+            if(IDqueue.peek() == selectedCenter.id){
+                IDqueue.poll()
+                binding.MapLayout.transitionToStart()
+                isClicked = false
+            }else{
+                IDqueue.poll()
+                IDqueue.add(selectedCenter.id)
+            }
         }
         return true
     }
