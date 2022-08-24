@@ -17,13 +17,17 @@ Language: Kotlin
 <br>
 Architecture: MVVM
 <br>
-DI : Koin
+UI Layout: XML
 <br>
-Networking: Retrofit, OkHttp, Gson
+jetpack: ViewBinding,AAC,ViewModel,Livedata,etc... 
 <br>
-Asynchronous: Coroutine
+DI : Koin, Hilt
 <br>
-JetPack: AAC, LiveData, ViewModel, Repository
+Network: Retrofit, OkHttp, Gson
+<br>
+Map API: NaverMap API
+<br>
+비동기: Coroutine Flow
 <br>
 LocalDB: Room
 <br>
