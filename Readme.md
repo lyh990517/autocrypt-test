@@ -10,3 +10,20 @@
 ![KakaoTalk_Photo_2022-08-24-14-42-09 003](https://user-images.githubusercontent.com/45873564/186339445-a9a4e62c-6f62-4538-a6d0-c414d96ba516.gif) <br>
 
 <br>
+
+[Used Android Skills]
+<br>
+Language: Kotlin
+<br>
+Architecture: MVVM
+<br>
+DI : Koin
+<br>
+Networking: Retrofit, OkHttp, Gson
+<br>
+Asynchronous: Coroutine
+<br>
+JetPack: AAC, LiveData, ViewModel, Repository
+<br>
+LocalDB: Room
+<br>
