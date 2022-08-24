@@ -39,7 +39,6 @@ class SplashActivity : BaseActivity<BaseViewModel>() {
         loadingText.text = "On Loading!!"
         splashView.transitionToEnd()
         state.RemoteData.forEachIndexed { LoadingCount, Center ->
-            Log.e("save", "${LoadingCount + 1}% ${Center}")
             viewModel.saveCenterToLocalDB(Center)
         }
     }
@@ -48,9 +47,6 @@ class SplashActivity : BaseActivity<BaseViewModel>() {
     }
 
     private fun handleSuccess(state: CenterDataState.success) = with(binding) {
-        state.LocalData.forEach { Center ->
-            Log.e("In Database", "${Center}")
-        }
         Handler().postDelayed(Runnable {
             progressBar.isVisible = false
             loadingText.text = "Loading Complete!!"
@@ -64,6 +60,6 @@ class SplashActivity : BaseActivity<BaseViewModel>() {
 
 
     private fun initViews() {
-        Log.e("Main", "Init!!")
+
     }
 }

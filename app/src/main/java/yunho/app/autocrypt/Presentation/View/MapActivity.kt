@@ -83,7 +83,7 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
         naverMap = map
         naverMap.maxZoom = 20.0
         naverMap.minZoom = 10.0
-        goLatLng(37.497885, 127.027512)
+        goLatLng(37.5301, 126.9263)
         val uiSetting = naverMap.uiSettings
         uiSetting.isLocationButtonEnabled = false
         binding.currentLocationButton.map = naverMap
