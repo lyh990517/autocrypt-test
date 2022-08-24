@@ -3,9 +3,6 @@ package yunho.app.autocrypt.Presentation.View
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -14,7 +11,6 @@ import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.util.MarkerIcons
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import yunho.app.autocrypt.Data.Entity.CenterEntity
-import yunho.app.autocrypt.Presentation.Adapter.CenterAdapter
 import yunho.app.autocrypt.Presentation.BaseActivity
 import yunho.app.autocrypt.Presentation.BaseViewModel
 import yunho.app.autocrypt.Presentation.State.MapDataState
@@ -93,7 +89,7 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
         binding.currentLocationButton.map = naverMap
         naverMap.locationSource = locationSource
         updateMarker(Centers)
-
+        Log.e("type","${Types.TypeSet}")
     }
 
     override fun onRequestPermissionsResult(
@@ -144,9 +140,15 @@ class MapActivity : BaseActivity<BaseViewModel>(), OnMapReadyCallback, Overlay.O
             val marker = Marker()
             marker.position = LatLng(Center.lat.toDouble(), Center.lng.toDouble())
             marker.onClickListener = this
+            if(Center.centerType == "지역"){
+                marker.icon = MarkerIcons.GREEN
+                marker.iconTintColor = Color.BLUE
+            }else{
+                //중앙권역
+                marker.icon = MarkerIcons.RED
+                marker.iconTintColor = Color.BLACK
+            }
             marker.tag = Center.id
-            marker.icon = MarkerIcons.BLUE
-            marker.iconTintColor = Color.RED
             marker.map = naverMap
         }
     }
